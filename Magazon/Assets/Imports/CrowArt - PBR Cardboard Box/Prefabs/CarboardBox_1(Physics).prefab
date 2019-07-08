@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 23579725177664088}
   - component: {fileID: 65569984092380234}
   - component: {fileID: 54157987518180096}
+  - component: {fileID: -5516531972648382010}
   m_Layer: 0
   m_Name: CarboardBox_1(Physics)
-  m_TagString: Untagged
+  m_TagString: Parcel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,3 +110,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-5516531972648382010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1192641458597302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07fc4b45a9e8619428e172cc2e93040c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 20

@@ -53,8 +53,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Imports\CarCamera\CarCam.cs" />
+     <Compile Include="Assets\Imports\CarCameraSystem\Scripts\Required\NoiseGen.cs" />
+     <Compile Include="Assets\Imports\CarCameraSystem\Scripts\Required\TagSelectorAttribute.cs" />
+     <Compile Include="Assets\Imports\CarCameraSystem\Scripts\Required\TagSelectorPropertyDrawer.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
-     <Compile Include="Assets\Scripts\carController.cs" />
+     <Compile Include="Assets\Scripts\CameraControllerTest.cs" />
+     <Compile Include="Assets\Scripts\ParcelShotter.cs" />
+     <Compile Include="Assets\Scripts\VanMovementController.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Users/hteva/MyFiles/LNU/Unity/Project/Magazon/Magazon/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>

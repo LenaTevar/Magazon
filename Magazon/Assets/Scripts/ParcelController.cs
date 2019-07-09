@@ -12,42 +12,50 @@ public class ParcelController : MonoBehaviour
     public GameObject DestroySucceed;
     [Tooltip("Prefab with an explosion for broken/lost deliveries.")]
     public GameObject ExplosionDrama;
-    private bool hasBeenDelivered = false;
 
-    private float probabilityOfFail = 0.8f;
+    private int brokenPoints = 1;
+    private int successPoints = 5;
+
+    private float probabilityOfFail = 0.3f;
+    /*
+     Children may change start method. 
+         */
     void Start()
     {
+        setUp();
+    }
+
+    public void setUp()
+    {
         GetComponent<Rigidbody>().velocity = transform.right * speed;
-        if (!hasBeenDelivered)
-            StartCoroutine(simpleDestroy());
+        StartCoroutine(simpleDestroy());
     }
 
-    public void getLucky()
+    public void rollForLuck()
     {
-        hasBeenDelivered = true;
-
-        Survives = randomProb(probabilityOfFail);
-
-        if (Survives)
-            destroySucceed();
+        Debug.Log("ROLLING FOR LUCK");
+        if (getsDelivered())
+        {
+            deliverWith(DestroySucceed);
+            Debug.Log("/t estroy succeed");
+        }
         else
-            destroyWithDrama();
+        {
+            deliverWith(ExplosionDrama);
+            Debug.Log("/t drama");
+        }
+
+       
     }
 
-    private void destroySucceed()
-    {
+    public void deliverWith(GameObject deliverType)
+    {        
         Destroy(gameObject);
-        DestroySucceed = Instantiate(DestroySucceed, transform.position, transform.rotation);
-        Destroy(DestroySucceed, 1);
-
+        GameObject temp = Instantiate(deliverType, transform.position, transform.rotation);
+        Destroy(temp, 1);
+        enableInput();
     }
-
-    private void destroyWithDrama()
-    {
-        Destroy(gameObject);
-        ExplosionDrama = Instantiate(ExplosionDrama, transform.position, transform.rotation);
-        Destroy(ExplosionDrama, 1);
-    }
+   
 
     IEnumerator simpleDestroy()
     {
@@ -55,12 +63,30 @@ public class ParcelController : MonoBehaviour
         GameObject simple = Instantiate(ExplosionDrama, transform.position, transform.rotation);
         Destroy(gameObject);
         Destroy(simple, 1);
+        enableInput();
     }
 
-    private bool randomProb(float failChance)
+    public bool getsDelivered()
     {
-        if (Random.value > failChance)
+        if (Random.value > probabilityOfFail)
             return false;
         return true;
+    }
+
+    public void setProbabilityOfFail(float probability)
+    {
+        probabilityOfFail = probability;
+    }
+
+    public void setPoints(int good, int broken)
+    {
+        successPoints = good;
+        brokenPoints = broken;
+    }
+
+    public void enableInput()
+    {
+        GameController.IsInputEnabled = true;
+        Debug.Log("PARCEL CONTROLLER - INPUT TRUE");
     }
 }

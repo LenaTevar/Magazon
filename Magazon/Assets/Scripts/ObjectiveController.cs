@@ -3,15 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectiveController : MonoBehaviour
-{
-   void OnTriggerEnter(Collider other)
+{   void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Parcel")
         {
-            ParcelController parcel = other.GetComponent<ParcelController>();
-
-            parcel.getLucky();
-            
+            Debug.Log("objective controller on trigger");
+            other.GetComponent<ParcelController>().rollForLuck();
             Destroy(gameObject);
         }
     }

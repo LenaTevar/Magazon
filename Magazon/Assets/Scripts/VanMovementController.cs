@@ -16,11 +16,30 @@ public class VanMovementController : MonoBehaviour
     public float maxSteeringAngle;
     public float maxMotorBrake=0f;
 
+    private bool inRobustDeliver = false;
+
     void Start()
     {
         GetComponent<Rigidbody>().centerOfMass = centerOfMass;
     }
     public void FixedUpdate()
+    {
+        checkInputEnableAndMove();
+    }
+    public void checkInputEnableAndMove()
+    {
+        if (GameController.IsInputEnabled)
+        {
+            inRobustDeliver = false;          
+            
+        } else
+        {
+            inRobustDeliver = true;
+        }
+
+        moveVan();
+    }
+    public void moveVan()
     {
         float motor = maxMotorTorque * Input.GetAxis("Vertical");
         float steering = maxSteeringAngle * Input.GetAxis("Horizontal");
@@ -31,13 +50,23 @@ public class VanMovementController : MonoBehaviour
         {
             ApplyMotorSteeringOrBrake(axleInfo, steering, motor);
             ApplyMovementToVisualWheels(axleInfo);
-        }       
-
+        }
     }
+
+
     private void BrakesCheck()
     {
+        if (inRobustDeliver)
+        {
+            maxMotorBrake = 300;
+        }
+        else
+        {
         _ = Input.GetKey(KeyCode.Space) ? maxMotorBrake = 300 : maxMotorBrake = 0; 
+        }
     }
+
+    
     private void ApplyMotorSteeringOrBrake(AxleInfo axleInfo, float steering, float motor)
     {
         if (axleInfo.steering)

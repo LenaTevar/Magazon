@@ -9,42 +9,44 @@ public class ShootParcelController : MonoBehaviour
     public GameObject robustParcel;
     [Tooltip("Location of the spawn for parcels.")]
     public Transform parcelSpawn;
-    [Tooltip("Time between shoots.")]
-    public float fireRate;
-    public float totalParcels = 5;
+  
+    public float totalParcels = 150;
 
-    private float nextFire = 0;
+  
     void Update()
     {
-        if(nextFire == 0 || Time.time > nextFire )
+        checkInputEnabledAndFire();
+    }
+
+    private void checkInputEnabledAndFire()
+    {
+        if (GameController.IsInputEnabled)
         {
-            nextFire = Time.time + fireRate;
-            if (hasAmmo())
-                fireParcel();
+            fireParcel();
         }
     }
-      
     private void fireParcel()
     {      
-        if (Input.GetKey("e"))
+        if (Input.GetKeyDown("e"))
         {
             setAndInstantiateParcel(fragileParcel);
         }
-        else if (Input.GetKey("q"))
+        else if (Input.GetKeyDown("q"))
         {
-            setAndInstantiateParcel(fragileParcel);
-        }
-        
+            setAndInstantiateParcel(robustParcel);
+        }        
     }
 
     private void setAndInstantiateParcel(GameObject parcel)
     {
-        nextFire = Time.time + fireRate;
         Instantiate(parcel, parcelSpawn.position, parcelSpawn.rotation);
+        
         totalParcels--;
     }
-    private bool hasAmmo()
+    private bool hasParcels()
     {
         return totalParcels > 0;
     }
+
+  
 }

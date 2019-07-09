@@ -14,75 +14,55 @@ public class VanMovementController : MonoBehaviour
     public float maxMotorTorque;
     [Tooltip("Maximum steer angle the wheel can have.")]
     public float maxSteeringAngle;
-
     public float maxMotorBrake=0f;
 
-
-    [Header("Parcels Setup")]
-    public GameObject parcel;
-    public Transform parcelSpawn;
-    public float fireRate;
-    private float nextFire;
-    
     void Start()
     {
         GetComponent<Rigidbody>().centerOfMass = centerOfMass;
     }
-
-
-    void Update()
-    {
-        if (Time.time > nextFire)
-        {
-            nextFire = Time.time + fireRate;
-            shoot();
-        }
-    }
-
- 
-
     public void FixedUpdate()
     {
         float motor = maxMotorTorque * Input.GetAxis("Vertical");
         float steering = maxSteeringAngle * Input.GetAxis("Horizontal");
 
-        if (Input.GetKey(KeyCode.Space) == true)
-        {
-            maxMotorBrake = 300;
-        } else
-        {
-            maxMotorBrake = 0;
-        }
+        BrakesCheck();
 
         foreach (AxleInfo axleInfo in axleInfos)
         {
-            if (axleInfo.steering)
-            {
-                axleInfo.leftWheel.steerAngle = steering;
-                axleInfo.rightWheel.steerAngle = steering;
-            }
-            if (axleInfo.motor)
-            {
-                axleInfo.leftWheel.motorTorque = motor;
-                axleInfo.rightWheel.motorTorque = motor;
-                
-            } else if (!axleInfo.motor)
-            {
-                axleInfo.leftWheel.brakeTorque = maxMotorBrake;
-                axleInfo.rightWheel.brakeTorque = maxMotorBrake;
-            }
-            ApplyLocalPositionToVisuals(axleInfo);
-        }
-
-        
+            ApplyMotorSteeringOrBrake(axleInfo, steering, motor);
+            ApplyMovementToVisualWheels(axleInfo);
+        }       
 
     }
-    public void ApplyLocalPositionToVisuals(AxleInfo axleInfo)
+    private void BrakesCheck()
+    {
+        _ = Input.GetKey(KeyCode.Space) ? maxMotorBrake = 300 : maxMotorBrake = 0; 
+    }
+    private void ApplyMotorSteeringOrBrake(AxleInfo axleInfo, float steering, float motor)
+    {
+        if (axleInfo.steering)
+        {
+            axleInfo.leftWheel.steerAngle = steering;
+            axleInfo.rightWheel.steerAngle = steering;
+        }
+        if (axleInfo.motor)
+        {
+            axleInfo.leftWheel.motorTorque = motor;
+            axleInfo.rightWheel.motorTorque = motor;
+
+        }
+        else if (!axleInfo.motor)
+        {
+            axleInfo.leftWheel.brakeTorque = maxMotorBrake;
+            axleInfo.rightWheel.brakeTorque = maxMotorBrake;
+        }
+        
+    }
+    private void ApplyMovementToVisualWheels(AxleInfo axleInfo)
     {       
         moveOneVisualWheel(axleInfo.leftWheel, axleInfo.leftVisual);
         moveOneVisualWheel(axleInfo.rightWheel, axleInfo.rightVisual);
     }
-
 
     private void moveOneVisualWheel(WheelCollider collider, GameObject visual) {
         Vector3 colliderPosition;
@@ -93,21 +73,7 @@ public class VanMovementController : MonoBehaviour
 
         visual.transform.position = colliderPosition;
         visual.transform.rotation = colliderRotation;        
-    }
-
-    private void shoot()
-    {
-        if (Input.GetKey("e"))
-        {
-            nextFire = Time.time + fireRate;
-            Instantiate(parcel, parcelSpawn.position, parcelSpawn.rotation);
-        }
-        else if (Input.GetKey("q"))
-        {
-            nextFire = Time.time + fireRate;
-            Instantiate(parcel, parcelSpawn.position, parcelSpawn.rotation);
-        }
-    }
+    } 
 }
 
 [System.Serializable]
@@ -119,7 +85,9 @@ public class AxleInfo
     [Header ("Wheels visuals")]
     public GameObject leftVisual;
     public GameObject rightVisual;
+    [Tooltip("Apply if Axle has motor.")]
     public bool motor; // is this wheel attached to motor?
+    [Tooltip("Apply if Axle moves when turning.")]
     public bool steering; // does this wheel apply steer angle?
 }
 

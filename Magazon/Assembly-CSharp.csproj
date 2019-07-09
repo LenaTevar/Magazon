@@ -59,7 +59,9 @@
      <Compile Include="Assets\Imports\CarCameraSystem\Scripts\Required\TagSelectorPropertyDrawer.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\CameraControllerTest.cs" />
+     <Compile Include="Assets\Scripts\ObjectiveController.cs" />
      <Compile Include="Assets\Scripts\ParcelShotter.cs" />
+     <Compile Include="Assets\Scripts\ShootParcelController.cs" />
      <Compile Include="Assets\Scripts\VanMovementController.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Users/hteva/MyFiles/LNU/Unity/Project/Magazon/Magazon/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

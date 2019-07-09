@@ -5,47 +5,44 @@ using UnityEngine;
 public class ShootParcelController : MonoBehaviour
 {
     [Header("Shooting Parcel")]
-    public GameObject parcel;
+    public GameObject fragileParcel;
+    public GameObject robustParcel;
+    [Tooltip("Location of the spawn for parcels.")]
     public Transform parcelSpawn;
+    [Tooltip("Time between shoots.")]
     public float fireRate;
-    private float nextFire = 0;
     public float totalParcels = 5;
 
+    private float nextFire = 0;
     void Update()
     {
-        if(Time.time > nextFire || nextFire == 0)
+        if(nextFire == 0 || Time.time > nextFire )
         {
             nextFire = Time.time + fireRate;
-            checkAmmoAndFire();
+            if (hasAmmo())
+                fireParcel();
         }
     }
-
-    private void checkAmmoAndFire()
-    {
-        if (hasAmmo())
-            fireParcel();
-        else
-            return;
-    }
-
+      
     private void fireParcel()
     {      
         if (Input.GetKey("e"))
         {
-            nextFire = Time.time + fireRate;
-            Instantiate(parcel, parcelSpawn.position, parcelSpawn.rotation);
-            consumeAmmo();
+            setAndInstantiateParcel(fragileParcel);
         }
         else if (Input.GetKey("q"))
         {
-            nextFire = Time.time + fireRate;
-            Instantiate(parcel, parcelSpawn.position, parcelSpawn.rotation);
-            consumeAmmo();
+            setAndInstantiateParcel(fragileParcel);
         }
         
     }
 
-    private void consumeAmmo() { totalParcels--; }
+    private void setAndInstantiateParcel(GameObject parcel)
+    {
+        nextFire = Time.time + fireRate;
+        Instantiate(parcel, parcelSpawn.position, parcelSpawn.rotation);
+        totalParcels--;
+    }
     private bool hasAmmo()
     {
         return totalParcels > 0;

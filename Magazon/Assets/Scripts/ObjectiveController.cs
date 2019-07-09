@@ -8,7 +8,7 @@ public class ObjectiveController : MonoBehaviour
     {
         if (other.tag == "Parcel")
         {
-            ParcelShotter parcel = other.GetComponent<ParcelShotter>();
+            ParcelController parcel = other.GetComponent<ParcelController>();
 
             parcel.getLucky();
             

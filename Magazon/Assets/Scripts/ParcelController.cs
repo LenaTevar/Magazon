@@ -9,61 +9,60 @@ public class ParcelController : MonoBehaviour
     [Tooltip("The parcel will not break.")]
     private bool Survives;
     [Tooltip("Prefab with an explosion for succesfull deliveries.")]
-    public GameObject DestroySucceed;
+    public GameObject Success;
     [Tooltip("Prefab with an explosion for broken/lost deliveries.")]
-    public GameObject ExplosionDrama;
+    public GameObject Failure;
 
     private int brokenPoints = 1;
     private int successPoints = 5;
+    private int failPoints = -1;
 
     private float probabilityOfFail = 0.3f;
-    /*
-     Children may change start method. 
-         */
+    public LevelController levelController;
+ 
     void Start()
     {
-        setUp();
+        //Children will change start method.
+        basicSetUp();
     }
 
-    public void setUp()
+    public void basicSetUp()
     {
+        levelController = GameObject.FindGameObjectWithTag("LevelController").GetComponent<LevelController>();
+
         GetComponent<Rigidbody>().velocity = transform.right * speed;
-        StartCoroutine(simpleDestroy());
+        StartCoroutine(delayedDestroy());
+
+        if (failPoints > 0)
+            Debug.Log("Broken points must be negative");
+
     }
 
     public void rollForLuck()
     {
-        Debug.Log("ROLLING FOR LUCK");
         if (getsDelivered())
         {
-            deliverWith(DestroySucceed);
-            Debug.Log("/t estroy succeed");
+            deliverWith(Success, successPoints);
         }
         else
         {
-            deliverWith(ExplosionDrama);
-            Debug.Log("/t drama");
+            deliverWith(Failure, brokenPoints);
         }
-
-       
     }
 
-    public void deliverWith(GameObject deliverType)
+    public void deliverWith(GameObject deliverType, int points)
     {        
         Destroy(gameObject);
-        GameObject temp = Instantiate(deliverType, transform.position, transform.rotation);
-        Destroy(temp, 1);
-        enableInput();
+        instantiateAnimation(deliverType);
+        levelController.updateArrivedParcels(points);
     }
    
 
-    IEnumerator simpleDestroy()
+    IEnumerator delayedDestroy()
     {
         yield return new WaitForSeconds(5);
-        GameObject simple = Instantiate(ExplosionDrama, transform.position, transform.rotation);
-        Destroy(gameObject);
-        Destroy(simple, 1);
-        enableInput();
+        deliverWith(Failure, failPoints);     
+        
     }
 
     public bool getsDelivered()
@@ -73,20 +72,127 @@ public class ParcelController : MonoBehaviour
         return true;
     }
 
-    public void setProbabilityOfFail(float probability)
+    private void instantiateAnimation(GameObject deliverType)
     {
-        probabilityOfFail = probability;
+        GameObject temp = Instantiate(deliverType, transform.position, transform.rotation);
+        Destroy(temp, 1);
     }
 
-    public void setPoints(int good, int broken)
+    public void setPoints(float probability, int SuccessPoints, int FailurePoints)
     {
-        successPoints = good;
-        brokenPoints = broken;
+        probabilityOfFail = probability;
+        successPoints = SuccessPoints;
+        brokenPoints = FailurePoints;
+    }
+
+ 
+   
+
+}
+
+/*
+ 
+     using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ParcelController : MonoBehaviour
+{
+    [Header("Parcel Shooter Setup")]
+    public float speed;
+    [Tooltip("The parcel will not break.")]
+    private bool Survives;
+    [Tooltip("Prefab with an explosion for succesfull deliveries.")]
+    public GameObject Success;
+    [Tooltip("Prefab with an explosion for broken/lost deliveries.")]
+    public GameObject Failure;
+
+    private int brokenPoints = 1;
+    private int successPoints = 5;
+    private int failPoints = -1;
+
+    private float probabilityOfFail = 0.3f;
+    private GUIController GUIController;
+ 
+    void Start()
+    {
+        //Children will change start method.
+        basicSetUp();
+    }
+
+    public void basicSetUp()
+    {
+        setUpGUIController();
+
+        GetComponent<Rigidbody>().velocity = transform.right * speed;
+        StartCoroutine(delayedDestroy());
+
+    }
+
+    public void rollForLuck()
+    {
+        if (getsDelivered())
+        {
+            deliverWith(Success, successPoints);
+        }
+        else
+        {
+            deliverWith(Failure, brokenPoints);
+        }
+    }
+
+    public void deliverWith(GameObject deliverType, int points)
+    {        
+        Destroy(gameObject);
+        instantiateAnimation(deliverType);
+        notifyGUIController(points);
+        enableInput();
+    }
+   
+
+    IEnumerator delayedDestroy()
+    {
+        yield return new WaitForSeconds(5);
+        deliverWith(Failure, failPoints);     
+        
+    }
+
+    public bool getsDelivered()
+    {
+        if (Random.value > probabilityOfFail)
+            return false;
+        return true;
+    }
+
+    private void instantiateAnimation(GameObject deliverType)
+    {
+        GameObject temp = Instantiate(deliverType, transform.position, transform.rotation);
+        Destroy(temp, 1);
+    }
+
+    public void setPoints(float probability, int SuccessPoints, int FailurePoints)
+    {
+        probabilityOfFail = probability;
+        successPoints = SuccessPoints;
+        brokenPoints = FailurePoints;
     }
 
     public void enableInput()
     {
-        GameController.IsInputEnabled = true;
-        Debug.Log("PARCEL CONTROLLER - INPUT TRUE");
+        if(!GameController.IsInputEnabled)
+            GameController.IsInputEnabled = true;
+    }
+    private void setUpGUIController()
+    {
+        GameObject tmp = GameObject.FindGameObjectWithTag("GUIController");
+        GUIController = tmp.GetComponent<GUIController>();
+        GUIController.UpdateScore(0);
+    }
+
+    private void notifyGUIController(int points)
+    {
+        GUIController.UpdateScore(points);
     }
 }
+
+     */

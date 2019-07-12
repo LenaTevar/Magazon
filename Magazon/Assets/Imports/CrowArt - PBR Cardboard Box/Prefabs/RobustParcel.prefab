@@ -123,9 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  DestroySucceed: {fileID: 1714681308540598, guid: 5cbc537826220e04592d5a41a0dd985f,
-    type: 3}
-  ExplosionDrama: {fileID: 1363784577269114, guid: 83f5e574addfb424ebd95bbb8ff8b080,
-    type: 3}
+  Success: {fileID: 1202522996400206, guid: f87e7926fd589094b8a269e14b8bea5e, type: 3}
+  Failure: {fileID: 1876081050882714, guid: e5df5caad603c8349ba3481b8ded0927, type: 3}
   deliverAnimation: {fileID: 1491359990764140, guid: 18c0a8b63ea8b4448a595b0c24c1384a,
     type: 3}

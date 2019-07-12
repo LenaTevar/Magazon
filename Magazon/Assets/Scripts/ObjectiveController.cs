@@ -7,9 +7,26 @@ public class ObjectiveController : MonoBehaviour
     {
         if (other.tag == "Parcel")
         {
-            Debug.Log("objective controller on trigger");
             other.GetComponent<ParcelController>().rollForLuck();
             Destroy(gameObject);
         }
     }
 }
+
+/*
+ using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ObjectiveController : MonoBehaviour
+{   void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Parcel")
+        {
+            other.GetComponent<ParcelController>().rollForLuck();
+            Destroy(gameObject);
+        }
+    }
+}
+
+ */

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 54157987518180096}
   - component: {fileID: 7547298048763268242}
   m_Layer: 0
-  m_Name: CarboardBox_1(Physics)
+  m_Name: FragileParcel
   m_TagString: Parcel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -123,8 +123,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
-  DestroySucceed: {fileID: 1202522996400206, guid: f87e7926fd589094b8a269e14b8bea5e,
-    type: 3}
-  ExplosionDrama: {fileID: 1150934714579380, guid: 779aa8c25fbd0e1488637639c9fff976,
-    type: 3}
-  probabilityOfFail: 0
+  Success: {fileID: 1202522996400206, guid: f87e7926fd589094b8a269e14b8bea5e, type: 3}
+  Failure: {fileID: 1271764609937064, guid: 8b47f39d91e61384889cff33839361dc, type: 3}

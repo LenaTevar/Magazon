@@ -53,11 +53,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Imports\CarCamera\CarCam.cs" />
-     <Compile Include="Assets\Imports\CarCameraSystem\Scripts\Required\NoiseGen.cs" />
-     <Compile Include="Assets\Imports\CarCameraSystem\Scripts\Required\TagSelectorAttribute.cs" />
-     <Compile Include="Assets\Imports\CarCameraSystem\Scripts\Required\TagSelectorPropertyDrawer.cs" />
+     <Compile Include="Assets\Scripts\GUIController.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
+     <Compile Include="Assets\Scripts\LevelController.cs" />
      <Compile Include="Assets\Scripts\ObjectiveController.cs" />
      <Compile Include="Assets\Scripts\ParcelController.cs" />
      <Compile Include="Assets\Scripts\RobustParcelController.cs" />

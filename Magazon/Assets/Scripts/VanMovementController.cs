@@ -15,8 +15,12 @@ public class VanMovementController : MonoBehaviour
     [Tooltip("Maximum steer angle the wheel can have.")]
     public float maxSteeringAngle;
     public float maxMotorBrake=0f;
+
+    public float speed;
+
     public GameObject levelControllerHolder;
     private LevelController levelController;
+
     private bool vanIsStationary = false;
 
     void Start()
@@ -46,6 +50,7 @@ public class VanMovementController : MonoBehaviour
     {
         float motor = maxMotorTorque * Input.GetAxis("Vertical");
         float steering = maxSteeringAngle * Input.GetAxis("Horizontal");
+        speed = GetComponent<Rigidbody>().velocity.magnitude;
 
         BrakesCheck();
 

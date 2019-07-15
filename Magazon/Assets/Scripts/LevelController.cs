@@ -9,6 +9,7 @@ public class LevelController : MonoBehaviour
     private bool IsInputEnabled = true;
     private bool IsDeliveryEnabled = true;
     private bool timeIsOver = false;
+    private bool isGameOver = false;
     private int score = 0;
 
     public int objectives = 5;
@@ -22,7 +23,7 @@ public class LevelController : MonoBehaviour
 
     void Update()
     {
-        if (!timeIsOver)
+        if (!timeIsOver && !isGameOver)
         {
 
             InGameUI.updateTimer(targetTime);
@@ -100,11 +101,13 @@ public class LevelController : MonoBehaviour
     {
         blockKeyboard();
         showWinUI();
+        isGameOver = true;
     }
     public void youLose()
     {
         blockKeyboard();
         showLoseUI();
+        isGameOver = true;
     }
 
     public void blockKeyboard()

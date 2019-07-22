@@ -5,16 +5,15 @@ using UnityEngine;
 public class LevelController : MonoBehaviour
 {
     public static GUIController InGameUI;
+    public int objectives = 5;
+    public int parcels = 5;
+    public float targetTime = 30.0f;
 
     private bool IsInputEnabled = true;
     private bool IsDeliveryEnabled = true;
     private bool timeIsOver = false;
     private bool isGameOver = false;
     private int score = 0;
-
-    public int objectives = 5;
-    public int parcels = 5;
-    public float targetTime = 30.0f;
     void Start()
     {
         setUpGUIController();
@@ -25,15 +24,11 @@ public class LevelController : MonoBehaviour
     {
         if (!timeIsOver && !isGameOver)
         {
-
-            InGameUI.updateTimer(targetTime);
+            InGameUI.updateTest(score, objectives, targetTime, parcels);
+            
             targetTime -= Time.deltaTime;
             checkTimingConditions();
         }
-        
-            
-
-        
         
     }
 
@@ -44,9 +39,12 @@ public class LevelController : MonoBehaviour
         if (pointsToAdd > 0)
         {
             objectives--;
+        } else if (pointsToAdd < 0)
+        {
+            //TOCHANGE
+            pointsToAdd = 0;
         }
 
-        InGameUI.UpdateScore(score);
 
         openKeyboard();
 
@@ -59,7 +57,6 @@ public class LevelController : MonoBehaviour
         {
             IsDeliveryEnabled = false;
         }
-        InGameUI.UpdateParcels(parcels);
     }
    
 
@@ -68,22 +65,20 @@ public class LevelController : MonoBehaviour
         GameObject tmp = GameObject.FindGameObjectWithTag("GUIController");
         InGameUI = tmp.GetComponent<GUIController>();
 
-        InGameUI.UpdateScore(score);
 
-        InGameUI.UpdateParcels(parcels);
-
-        InGameUI.updateTimer(targetTime);
     }
 
     public void checkEndingConditions()
     {
         if (objectives < 1)
         {
-            youWin();
+            showWinUI();
+            gameOver();
         }
         else if (parcels < 1 || timeIsOver)
         {
-            youLose();
+            showLoseUI();
+            gameOver();
         }
 
     }
@@ -97,16 +92,9 @@ public class LevelController : MonoBehaviour
         }
     }
 
-    public void youWin()
+    public void gameOver()
     {
         blockKeyboard();
-        showWinUI();
-        isGameOver = true;
-    }
-    public void youLose()
-    {
-        blockKeyboard();
-        showLoseUI();
         isGameOver = true;
     }
 
@@ -138,10 +126,4 @@ public class LevelController : MonoBehaviour
         InGameUI.showEndGameText("YOU LOSE");
     }
 
-    static IEnumerator delayEndGame()
-    {
-        yield return new WaitForSeconds(5);
-        
-
-    }
 }

@@ -13,20 +13,3 @@ public class ObjectiveController : MonoBehaviour
     }
 }
 
-/*
- using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class ObjectiveController : MonoBehaviour
-{   void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Parcel")
-        {
-            other.GetComponent<ParcelController>().rollForLuck();
-            Destroy(gameObject);
-        }
-    }
-}
-
- */

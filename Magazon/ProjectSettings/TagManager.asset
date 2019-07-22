@@ -9,6 +9,7 @@ TagManager:
   - LevelController
   - Objectives
   - Objective
+  - RobustParcel
   layers:
   - Default
   - TransparentFX

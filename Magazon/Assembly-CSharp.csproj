@@ -110,11 +110,13 @@
      <Compile Include="Assets\Scripts\GameController.cs" />
      <Compile Include="Assets\Scripts\LevelController.cs" />
      <Compile Include="Assets\Scripts\ObjectiveController.cs" />
+     <Compile Include="Assets\Scripts\ObjectiveRadar.cs" />
      <Compile Include="Assets\Scripts\ParcelController.cs" />
      <Compile Include="Assets\Scripts\RobustParcelController.cs" />
      <Compile Include="Assets\Scripts\RobustRadar.cs" />
      <Compile Include="Assets\Scripts\ShootParcelController.cs" />
      <Compile Include="Assets\Scripts\VanMovementController.cs" />
+     <Compile Include="Assets\VanRadar.cs" />
      <None Include="Assets\Cinemachine\ReleaseNotes.txt" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Users/hteva/MyFiles/LNU/Unity/Project/Magazon/Magazon/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

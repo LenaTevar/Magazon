@@ -13,6 +13,14 @@ public class RobustRadar : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        parentController.setUpTransform(other.transform);
+        /*
+        Debug.Log(">>RADAR: Something collided!");
+        if(other.tag == "Objective")
+        {
+            Debug.Log(">>RADAR: Objective Collider! Sending transform to parent. ");
+            Transform go = other.gameObject.transform;
+            parentController.setUpTransform(go);
+            
+        }*/
     }
 }

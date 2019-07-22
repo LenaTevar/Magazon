@@ -13,30 +13,41 @@ public class RobustParcelController : ParcelController
     private float robustProbability = 0.9f;
     private int robustBrokenPoints = 1;
     private int robustSuccesPoints = 10;
-
+    private Transform objective = null;
     void Start()
-    { 
-        setUpRobustParcel();  
+    {
+        configObjectiveByVanRadar();
+        configureParcelSettings();
     }
-    private void setUpRobustParcel()
+    private void configObjectiveByVanRadar()
     {
         
-        base.setPoints(robustProbability, robustSuccesPoints, robustBrokenPoints);
-        base.basicSetUp();
+        gameObject.transform.parent = GameObject.FindGameObjectWithTag("Player").transform;
+        objective = transform.parent.GetComponentInChildren<VanRadar>().objective;
+        StartCoroutine(delayedDestroy());
 
+    }
+    private void configureParcelSettings()
+    {
+        base.setPoints(robustProbability, robustSuccesPoints, robustBrokenPoints);
+        base.levelController = GameObject.FindGameObjectWithTag("LevelController").GetComponent<LevelController>();
         base.levelController.blockKeyboard();
-        delivering();
+        deliveringAnimations();
     }
 
-    private void delivering()
+    private void deliveringAnimations()
     {
         GameObject deliverAni = Instantiate(deliverAnimation, transform.position, transform.rotation);
         deliverAni.transform.parent = gameObject.transform;        
     }
-
-    public void setUpTransform(Transform t)
+    
+    void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, t.position, base.speed);
+        if(objective != null)
+        {
+            float step = base.speed * Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, objective.position, step);            
+        }
+       
     }
-
 }

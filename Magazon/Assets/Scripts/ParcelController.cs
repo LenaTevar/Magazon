@@ -24,6 +24,8 @@ public class ParcelController : MonoBehaviour
     {
         //Children will change start method.
         basicSetUp();
+
+       
     }
 
     public void basicSetUp()
@@ -35,7 +37,7 @@ public class ParcelController : MonoBehaviour
 
         if (failPoints > 0)
             Debug.Log("Broken points must be negative");
-
+        gameObject.transform.parent = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     public void rollForLuck()
@@ -58,7 +60,7 @@ public class ParcelController : MonoBehaviour
     }
    
 
-    IEnumerator delayedDestroy()
+    public IEnumerator delayedDestroy()
     {
         yield return new WaitForSeconds(5);
         deliverWith(Failure, failPoints);     

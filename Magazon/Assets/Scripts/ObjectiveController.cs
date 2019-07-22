@@ -5,8 +5,11 @@ using UnityEngine;
 public class ObjectiveController : MonoBehaviour
 {   void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Parcel")
+        Debug.Log(">> Objective Collider Activate");
+        if (other.tag.Contains("Parcel"))
         {
+            Debug.Log(">> Objective Collider found Parcel: " + other.tag);
+
             other.GetComponent<ParcelController>().rollForLuck();
             Destroy(gameObject);
         }

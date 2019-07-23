@@ -9,7 +9,6 @@ public class ShootParcelController : MonoBehaviour
     public GameObject robustParcel;
     [Tooltip("Location of the spawn for parcels.")]
     public Transform parcelSpawn;
-    public GameObject levelControllerHolder;
 
     private LevelController levelController;
     void Start()

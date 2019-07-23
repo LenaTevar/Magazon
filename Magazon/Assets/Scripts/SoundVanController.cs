@@ -5,7 +5,7 @@ using UnityEngine;
 public class SoundVanController : MonoBehaviour
 {
 
-    private AudioSource source;
+    public AudioSource source;
     private float speed;
     private float pitch;
     private float modifier = 30;

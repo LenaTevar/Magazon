@@ -14,9 +14,11 @@ public class LevelController : MonoBehaviour
     private bool timeIsOver = false;
     private bool isGameOver = false;
     private int score = 0;
+    private SoundController sc;
     void Start()
     {
         setUpGUIController();
+        sc = FindObjectOfType<SoundController>();
     }
 
 
@@ -128,6 +130,12 @@ public class LevelController : MonoBehaviour
     public bool IsGameOver()
     {
         return isGameOver;
+    }
+
+    public void playSoundEffect(string name)
+    {
+        Debug.Log("Level Controller play sound effect " + name);
+        sc.play(name);
     }
 
 }

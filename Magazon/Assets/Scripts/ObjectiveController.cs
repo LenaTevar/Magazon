@@ -7,7 +7,6 @@ public class ObjectiveController : MonoBehaviour
     {
         if (other.tag.Contains("Parcel"))
         {
-
             other.GetComponent<ParcelController>().rollForLuck();
             Destroy(gameObject);
         }

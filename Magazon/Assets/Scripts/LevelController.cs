@@ -125,5 +125,9 @@ public class LevelController : MonoBehaviour
     {
         InGameUI.showEndGameText("YOU LOSE");
     }
+    public bool IsGameOver()
+    {
+        return isGameOver;
+    }
 
 }

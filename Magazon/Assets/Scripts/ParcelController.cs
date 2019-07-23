@@ -5,9 +5,7 @@ using UnityEngine;
 public class ParcelController : MonoBehaviour
 {
     [Header("Parcel Shooter Setup")]
-    public float speed;
-    [Tooltip("The parcel will not break.")]
-    private bool Survives;
+    public float speed; 
     [Tooltip("Prefab with an explosion for succesfull deliveries.")]
     public GameObject Success;
     [Tooltip("Prefab with an explosion for broken/lost deliveries.")]
@@ -18,6 +16,7 @@ public class ParcelController : MonoBehaviour
     private int failPoints = -1;
 
     private float probabilityOfFail = 0.3f;
+    [HideInInspector]
     public LevelController levelController;
  
     void Start()
@@ -30,7 +29,7 @@ public class ParcelController : MonoBehaviour
 
     public void basicSetUp()
     {
-        levelController = GameObject.FindGameObjectWithTag("LevelController").GetComponent<LevelController>();
+        levelController = FindObjectOfType<LevelController>();
 
         GetComponent<Rigidbody>().velocity = transform.right * speed;
         StartCoroutine(delayedDestroy());

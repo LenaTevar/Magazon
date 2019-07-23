@@ -30,7 +30,7 @@ public class RobustParcelController : ParcelController
     private void configureParcelSettings()
     {
         base.setPoints(robustProbability, robustSuccesPoints, robustBrokenPoints);
-        base.levelController = GameObject.FindGameObjectWithTag("LevelController").GetComponent<LevelController>();
+        base.levelController = FindObjectOfType<LevelController>();
         base.levelController.blockKeyboard();
         deliveringAnimations();
     }

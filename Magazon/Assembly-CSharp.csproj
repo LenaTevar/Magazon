@@ -115,8 +115,9 @@
      <Compile Include="Assets\Scripts\RobustParcelController.cs" />
      <Compile Include="Assets\Scripts\RobustRadar.cs" />
      <Compile Include="Assets\Scripts\ShootParcelController.cs" />
+     <Compile Include="Assets\Scripts\SoundVanController.cs" />
      <Compile Include="Assets\Scripts\VanMovementController.cs" />
-     <Compile Include="Assets\VanRadar.cs" />
+     <Compile Include="Assets\Scripts\VanRadar.cs" />
      <None Include="Assets\Cinemachine\ReleaseNotes.txt" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Users/hteva/MyFiles/LNU/Unity/Project/Magazon/Magazon/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

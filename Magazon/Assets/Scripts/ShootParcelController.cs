@@ -14,7 +14,7 @@ public class ShootParcelController : MonoBehaviour
     private LevelController levelController;
     void Start()
     {
-        levelController = levelControllerHolder.GetComponent<LevelController>();
+        levelController = FindObjectOfType<LevelController>();
 
     }
 

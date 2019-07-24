@@ -10,6 +10,7 @@ TagManager:
   - Objectives
   - Objective
   - RobustParcel
+  - NPC
   layers:
   - Default
   - TransparentFX

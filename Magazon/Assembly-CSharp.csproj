@@ -106,10 +106,12 @@
      <Compile Include="Assets\Cinemachine\Timeline\CinemachineMixer.cs" />
      <Compile Include="Assets\Cinemachine\Timeline\CinemachineShot.cs" />
      <Compile Include="Assets\Cinemachine\Timeline\CinemachineTrack.cs" />
+     <Compile Include="Assets\Scripts\CarMovementController.cs" />
      <Compile Include="Assets\Scripts\GUIController.cs" />
      <Compile Include="Assets\Scripts\LevelController.cs" />
      <Compile Include="Assets\Scripts\ObjectiveController.cs" />
      <Compile Include="Assets\Scripts\ParcelController.cs" />
+     <Compile Include="Assets\Scripts\PathController.cs" />
      <Compile Include="Assets\Scripts\RobustParcelController.cs" />
      <Compile Include="Assets\Scripts\ShootParcelController.cs" />
      <Compile Include="Assets\Scripts\Sound.cs" />

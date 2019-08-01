@@ -11,6 +11,8 @@ TagManager:
   - Objective
   - RobustParcel
   - NPC
+  - VanRadar
+  - Prop
   layers:
   - Default
   - TransparentFX

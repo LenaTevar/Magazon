@@ -122,9 +122,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d4172135bc8673499f61112c9453ed2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 0.2
   Success: {fileID: 1202522996400206, guid: f87e7926fd589094b8a269e14b8bea5e, type: 3}
+  successSound: good
   Failure: {fileID: 1876081050882714, guid: e5df5caad603c8349ba3481b8ded0927, type: 3}
+  failureSound: fail
+  lostSound: lost
   levelController: {fileID: 0}
   deliverAnimation: {fileID: 1491359990764140, guid: 18c0a8b63ea8b4448a595b0c24c1384a,
     type: 3}

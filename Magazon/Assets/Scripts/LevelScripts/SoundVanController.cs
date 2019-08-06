@@ -11,12 +11,12 @@ public class SoundVanController : MonoBehaviour
     private float pitch;
     private float modifier = 30;
 
-    private GameObject van;
+    public GameObject van;
 
     
     void Start()
     {
-        van = GameObject.FindGameObjectWithTag("Player");
+       // van = GameObject.FindGameObjectWithTag("Player");
     }
 
     void Update()
@@ -31,6 +31,7 @@ public class SoundVanController : MonoBehaviour
 
     private void updateSpeed()
     {
+        //speed = gameObject.GetComponent<Rigidbody>().velocity.magnitude;
         speed = van.GetComponent<Rigidbody>().velocity.magnitude;
     }
 

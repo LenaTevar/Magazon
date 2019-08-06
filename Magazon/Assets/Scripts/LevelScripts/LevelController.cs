@@ -9,6 +9,7 @@ public class LevelController : MonoBehaviour
     public int objectives = 5;
     public int parcels = 5;
     public float targetTime = 30.0f;
+    public LevelCode levelCode;
 
     private bool IsInputEnabled = true;
     private bool IsDeliveryEnabled = true;
@@ -52,7 +53,6 @@ public class LevelController : MonoBehaviour
             objectives--;
             score += pointsToAdd;
         }
-       // toggleKeyboard();
         checkEndingConditions();
     }
     public void updateDeliveredParcels()
@@ -75,6 +75,8 @@ public class LevelController : MonoBehaviour
         if (objectives < 1)
         {
             showWinUI();
+            PlayerRepository.SaveLevel(new Level(levelCode, score));
+            print("Saved");
             gameOver();
         }
         else if (parcels < 1 || timeIsOver)
@@ -108,11 +110,16 @@ public class LevelController : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
-        if (isWin && Input.GetKeyDown("n"))
+        else if (isWin && Input.GetKeyDown("n"))
         {
-            print("next level");
+            SceneManager.LoadScene("Ending");
 
         }
+        else if (Input.GetKey(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(0);
+        }
+
     }
     public void toggleKeyboard()
     {

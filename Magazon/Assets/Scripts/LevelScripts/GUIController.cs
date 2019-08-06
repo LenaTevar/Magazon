@@ -30,20 +30,19 @@ public class GUIController : MonoBehaviour
     } 
     public void showEndGameText(string textToEnd)
     {
-        Text temp = endGame.GetComponent<Text>();
-        temp.text = textToEnd;
+        endGame.GetComponentInChildren<Text>().text = textToEnd;
         endGame.SetActive(true);
     }
     
     public void showWin(int score)
     {
-        string win = string.Format("YOU WIN - SCORE: {0} \r\n Space to Replay \t N to Next Level", score);
+        string win = string.Format("YOU WIN - SCORE: {0} \r\nSpace to Replay \r\nN to Next Level \r\nESC to Menu", score);
         showEndGameText(win);
     }
 
     public void showLose()
     {
-        string lose = "YOU LOSE \r\n Space to Replay";
+        string lose = "YOU LOSE \r\n Space to Replay \r\nESC to Menu";
         showEndGameText(lose);
     }
 

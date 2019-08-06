@@ -474,6 +474,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 3107806251000223761}
+  name: 
 --- !u!1 &3107806251207416004
 GameObject:
   m_ObjectHideFlags: 0

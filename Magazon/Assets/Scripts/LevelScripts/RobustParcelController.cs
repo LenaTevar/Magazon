@@ -26,7 +26,7 @@ public class RobustParcelController : ParcelController
     new public void gameObjectsSetup()
     {
         base.levelController = FindObjectOfType<LevelController>();
-        objectiveCoord = GameObject.FindGameObjectWithTag("Player").transform.GetComponentInChildren<VanRadar>().objective;
+        objectiveCoord = FindObjectOfType<VanRadar>().objective;
 
         base.levelController.toggleKeyboard();
         deliveringAnimations();
@@ -41,6 +41,7 @@ public class RobustParcelController : ParcelController
     
     void Update()
     {
+        print("Robust parcel speed: " + base.speed);
         if(objectiveCoord != null)
         {
             moveTowardsObjective();    

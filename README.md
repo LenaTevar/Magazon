@@ -15,7 +15,7 @@ This game was made in Unity 2019.3 Personal for Windows x86.
 - Claxon: K 
 
 # PR
-Feel free to fork but pull request may not be accepted because it is a school project and has to keep personal. 
+Feel free to fork but pull request/Issues may not be accepted because it is a school project and has to keep personal. 
 
 ## Imports
 - Cinemachine (Camera)

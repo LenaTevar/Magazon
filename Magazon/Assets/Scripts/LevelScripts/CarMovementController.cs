@@ -32,12 +32,12 @@ public class CarMovementController : MonoBehaviour
         {
 
             moveSteering(axle, newSteer);
-            ApplyMovementToVisualWheels(axle);
+            applyMovementToVisualWheels(axle);
 
 
         }
 
-        CheckPosition(nodes[currentNode]);
+        checkPosition(nodes[currentNode]);
 
     }
 
@@ -78,7 +78,7 @@ public class CarMovementController : MonoBehaviour
         return (relativeVector.x / relativeVector.magnitude) * maxSteerAngle; 
     }
    
-    private void CheckPosition(Transform node)
+    private void checkPosition(Transform node)
     {
         if (Vector3.Distance(transform.position, nodes[currentNode].position) < nodeDistance)
         {
@@ -95,7 +95,7 @@ public class CarMovementController : MonoBehaviour
     }
    
 
-    private void ApplyMovementToVisualWheels(AxleInfo axleInfo)
+    private void applyMovementToVisualWheels(AxleInfo axleInfo)
     {
         moveOneVisualWheel(axleInfo.leftWheel, axleInfo.leftVisual);
         moveOneVisualWheel(axleInfo.rightWheel, axleInfo.rightVisual);

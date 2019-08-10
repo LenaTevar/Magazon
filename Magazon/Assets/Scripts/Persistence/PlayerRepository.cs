@@ -2,16 +2,41 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
-
-public static class PlayerRepository 
+/*
+ Class: Player Repository
+ This class will be used as interface for the persistance type
+ finally selected. It has to be as abstract as possible to be used
+ with possible increments of levels. 
+     */
+public sealed class PlayerRepository 
 {
-    public static void SaveLevel(Level inLevel)
+
+    private PlayerRepository() { }
+
+    private static PlayerRepository instance = null;
+
+    public static PlayerRepository Instance
     {
-        PlayerPrefs.SetInt(inLevel.ToString(), inLevel.score);
-        PlayerPrefs.Save();
+        get
+        {
+            if(instance == null)
+            {
+                instance = new PlayerRepository();
+                if (instance.isNewGame())
+                {
+                    instance.NewStart();
+                }
+            }
+            return instance;
+        }
     }
 
-    public static Level GetLevel(LevelCode CODE)
+    public  void SaveLevel(Level inLevel)
+    {
+        PlayerPrefs.SetInt(inLevel.levelName.ToString(), inLevel.score);
+        PlayerPrefs.Save();
+    }
+    public  Level GetLevel(LevelCode CODE)
     {
         string name = CODE.ToString();
         int score = 0;
@@ -27,8 +52,7 @@ public static class PlayerRepository
         return new Level(CODE, score);
 
     }
-
-    public static Level[] GetLevels()
+    public  Level[] GetLevels()
     {
         Level[] levels = new Level[6];
         foreach (LevelCode code in Enum.GetValues(typeof(LevelCode))) 
@@ -39,8 +63,7 @@ public static class PlayerRepository
 
         return levels;
     }
-
-    public static void NewStart()
+    public  void NewStart()
     {
 
         foreach (LevelCode code in Enum.GetValues(typeof(LevelCode)))
@@ -49,6 +72,11 @@ public static class PlayerRepository
             SaveLevel(empty);
 
         }
+    }
+
+    private bool isNewGame()
+    {
+        return PlayerPrefs.GetInt("TUTORIAL") == 0;
     }
 }
 

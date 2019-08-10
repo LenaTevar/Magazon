@@ -13,16 +13,11 @@ public class SoundVanController : MonoBehaviour
 
     public GameObject van;
 
-    
-    void Start()
-    {
-       // van = GameObject.FindGameObjectWithTag("Player");
-    }
 
     void Update()
     {
         updatePitch();
-        if (Input.GetKeyDown("r"))
+        if (Input.GetKeyDown(KeyCode.K))
         {
             hornSource.Play();
 
@@ -31,7 +26,6 @@ public class SoundVanController : MonoBehaviour
 
     private void updateSpeed()
     {
-        //speed = gameObject.GetComponent<Rigidbody>().velocity.magnitude;
         speed = van.GetComponent<Rigidbody>().velocity.magnitude;
     }
 

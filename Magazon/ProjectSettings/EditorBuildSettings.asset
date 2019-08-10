@@ -12,21 +12,21 @@ EditorBuildSettings:
     path: Assets/Scenes/Tutorial.unity
     guid: 27677262797c8594998dcdb2c3658740
   - enabled: 1
-    path: Assets/Scenes/Ending.unity
-    guid: 7248b2c3c069f5d488d9c7a3f630ce9a
-  - enabled: 0
-    path: Assets/Scenes/Never.unity
-    guid: 2933487de3d158d4895075df3243c909
-  - enabled: 0
-    path: Assets/Scenes/gonna.unity
-    guid: 25b67070be7c3264bb40230790a2bcf8
-  - enabled: 0
-    path: Assets/Scenes/give.unity
-    guid: 9ff525d5e0e92e047ac04a285fec07e2
-  - enabled: 0
-    path: Assets/Scenes/you.unity
-    guid: 334810b2a22c74246a6a03646f2ffc2b
-  - enabled: 0
-    path: Assets/Scenes/up.unity
-    guid: 3a1c899bfb23d714a97c17854520b2bd
+    path: Assets/Scenes/01-Never.unity
+    guid: 3d3509ec0ebb0ea41af90da5932f9dce
+  - enabled: 1
+    path: Assets/Scenes/02-gonna.unity
+    guid: f0243a558150ac1449eb879d1be26fff
+  - enabled: 1
+    path: Assets/Scenes/03 - give.unity
+    guid: 2a90efb5ea300db47b4fca2b98b074d0
+  - enabled: 1
+    path: Assets/Scenes/04 - you.unity
+    guid: d188c2bb077e2c244aa0477907646511
+  - enabled: 1
+    path: Assets/Scenes/05 - up.unity
+    guid: 3983afe9ed7722c4eaa415562a0f33d2
+  - enabled: 1
+    path: Assets/Scenes/EndShell.unity
+    guid: 22f65669f3bd45e4a8889b0a319b817f
   m_configObjects: {}

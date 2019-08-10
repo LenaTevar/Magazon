@@ -340,7 +340,7 @@ GameObject:
   - component: {fileID: 15173714042656532}
   - component: {fileID: 15173714042656539}
   m_Layer: 0
-  m_Name: GUI Controller
+  m_Name: UI
   m_TagString: GUIController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -373,7 +373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f160e4252bac57b4083c5f8164a38bc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  test: {fileID: 15173714518253301}
+  UIText: {fileID: 15173714518253301}
   endGame: {fileID: 6831426893756944520}
   map: {fileID: 15173715177545244}
 --- !u!1 &15173714057544436
@@ -478,8 +478,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 15173714262322503}
-  m_LocalRotation: {x: 0.1509007, y: -0, z: -0, w: 0.988549}
-  m_LocalPosition: {x: 0.5795008, y: 4.299999, z: 34.239143}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 15173715684519721}
@@ -634,7 +634,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 600, y: 30}
+  m_SizeDelta: {x: 900, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &15173714518253300
 CanvasRenderer:
@@ -677,7 +677,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Loading information...
+  m_Text: 'Loading...
+
+'
 --- !u!1 &15173714547693035
 GameObject:
   m_ObjectHideFlags: 0
@@ -1398,10 +1400,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58e8b4379612ef04a9a1d70494c82ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InGameUI: {fileID: 0}
+  UIController: {fileID: 15173714042656539}
   objectives: 3
   parcels: 50
   targetTime: 500
+  levelCode: 0
 --- !u!1 &15173715625577666
 GameObject:
   m_ObjectHideFlags: 0

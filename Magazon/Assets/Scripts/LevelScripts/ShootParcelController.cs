@@ -19,6 +19,12 @@ public class ShootParcelController : MonoBehaviour
 
     void Update() { checkInputEnabledAndFire(); }
 
+    /*
+     Method: checkInputEnabledAndFire
+     Check if Level Controller has blocked the input for the keyboard.
+     That means a parcel is being delivered at the moment and next shoot 
+     has to wait. 
+         */
     private void checkInputEnabledAndFire()
     {
         if (levelController.isDeliveryEnabled())
@@ -31,14 +37,13 @@ public class ShootParcelController : MonoBehaviour
 
     private void fireParcel()
     {      
-        if (Input.GetKeyDown("e"))
+        if (Input.GetKeyDown(KeyCode.L))
         {
             setAndInstantiateParcel(fragileParcel);
         }
-        else if (Input.GetKeyDown("q"))
+        else if (Input.GetKeyDown(KeyCode.J))
         {
-            levelController.playSoundEffect("handBrake");
-            setAndInstantiateParcel(robustParcel);
+            StartCoroutine(deliverRobustParcel());
         }
     }
 
@@ -46,11 +51,19 @@ public class ShootParcelController : MonoBehaviour
 
     private void setAndInstantiateParcel(GameObject parcel)
     {
+
         Instantiate(parcel, parcelSpawn.position, parcelSpawn.rotation);        
         levelController.updateDeliveredParcels();
        
     }
     
 
-
+    public IEnumerator deliverRobustParcel()
+    {
+        levelController.playSoundEffect("handBrake");
+        levelController.toggleKeyboard();
+        levelController.updateDeliveredParcels();
+        yield return new WaitForSeconds(2);
+        Instantiate(robustParcel, parcelSpawn.position, parcelSpawn.rotation);
+    }
 }

@@ -1,51 +1,53 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 public class LevelController : MonoBehaviour
 {
-    public GUIController InGameUI;
-    private SoundController sc;
+    
+    public UIController UIController;
+    private SoundController soundController;
     public int objectives = 5;
     public int parcels = 5;
     public float targetTime = 30.0f;
     public LevelCode levelCode;
 
-    private bool IsInputEnabled = true;
-    private bool IsDeliveryEnabled = true;
-    private bool timeIsOver = false;
-    private bool isGameOver = false;
-    private bool isWin = false;
+    private bool movementInputEnabled = true;
+    private bool DeliveryEnabled = true;
     private int score = 0;
+
+    private GAMESTATUS gameStatus = GAMESTATUS.PLAYING;
+    private bool finalScoreSet = true;
     void Start()
     {
         setupUISoundControllers();
     }
-
-
     void Update()
     {
-        updateUI();
-        toggleMap();
-        endingOptions();
-    }
-
-    private void updateUI()
-    {
-        if (!isGameOver)
+        if(gameStatus == GAMESTATUS.PLAYING)
         {
-            InGameUI.updateTest(score, objectives, targetTime, parcels);
-            targetTime -= Time.deltaTime;
-            checkTimingConditions();
-        } 
+            updateUI();
+            toggleMap();
+            CheckGameStatus();
+        } else
+        {
+            stopGame();
+        }
     }
 
-    private void toggleMap()
+    public void CheckGameStatus()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.LeftShift))
-            InGameUI.toggleMap();
+        if(targetTime <= 0.0f || parcels < 1)
+        {
+            gameStatus = GAMESTATUS.LOSE;
+        }
+        else if(objectives < 1)
+        {
+            gameStatus = GAMESTATUS.WIN;
+        }
     }
-
+    /*
+     Method: updateArrivedParcels
+     ParcelController passes the message that a parcel was delivered into the objective.  
+         */
     public void updateArrivedParcels(int pointsToAdd)
     {
         if (pointsToAdd > 0)
@@ -53,105 +55,113 @@ public class LevelController : MonoBehaviour
             objectives--;
             score += pointsToAdd;
         }
-        checkEndingConditions();
     }
+    /*
+    Method: updateDeliveredParcels
+    ShootParcelController passes the message that a parcel was used.
+    */
     public void updateDeliveredParcels()
     {
         parcels--;
-        if(parcels < 1)
-            IsDeliveryEnabled = false;
-    }
-
-
-    private void setupUISoundControllers()
-    {
-        sc = FindObjectOfType<SoundController>();
-
-        InGameUI = FindObjectOfType<GUIController>();
-    }
-
-    private void checkEndingConditions()
-    {
-        if (objectives < 1)
-        {
-            showWinUI();
-            PlayerRepository.SaveLevel(new Level(levelCode, score));
-            print("Saved");
-            gameOver();
-        }
-        else if (parcels < 1 || timeIsOver)
-        {
-            showLoseUI();
-            gameOver();
-        }
-
-    }
-
-    private void checkTimingConditions()
-    {
-        if (targetTime <= 0.0f)
-        {
-            timeIsOver = true;
-            checkEndingConditions();
-        }
-    }
-
-    private void gameOver()
-    {
-        toggleKeyboard();
-        isGameOver = true;
-        
-    }
-    private void endingOptions()
-    {
-
-        if (isGameOver && Input.GetKeyDown(KeyCode.Space))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-
-        else if (isWin && Input.GetKeyDown("n"))
-        {
-            SceneManager.LoadScene("Ending");
-
-        }
-        else if (Input.GetKey(KeyCode.Escape))
-        {
-            SceneManager.LoadScene(0);
-        }
-
+        if (parcels < 1)
+            DeliveryEnabled = false;
     }
     public void toggleKeyboard()
     {
-        IsInputEnabled = !IsInputEnabled;
-    }  
-
+        movementInputEnabled = !movementInputEnabled;
+    }
     public bool isKeyboardEnabled()
     {
-        return IsInputEnabled;
+        return movementInputEnabled;
     }
     public bool isDeliveryEnabled()
     {
-        return IsDeliveryEnabled;
+        return DeliveryEnabled;
     }
-    public void showWinUI()
-    {
-
-        InGameUI.showWin(score);
-        isWin = true;
-    }
-    public void showLoseUI()
-    {
-        InGameUI.showLose();
-        isWin = false;
-    }
-    public bool IsGameOver()
-    {
-        return isGameOver;
-    }
-
+    /*
+    Method: playSoundEffect
+    Message passed to Sound controller to play a specific sound effect.
+        */
     public void playSoundEffect(string name)
     {
-        sc.play(name);
+        soundController.play(name);
     }
+    /*
+     Method: setup UI Sound Controllers
+     Find the sound controller script and GUI controller script.
+         */
+    private void setupUISoundControllers()
+    {
+        soundController = FindObjectOfType<SoundController>();
+        UIController = FindObjectOfType<UIController>();
+    }
+    private void toggleMap()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.LeftShift))
+            UIController.toggleMap();
+    }
+
+    private void updateUI()
+    {
+        UIController.updatePlayerInfo(score, objectives, targetTime, parcels);
+        targetTime -= Time.deltaTime;   
+    }
+   
+    private void stopGame()
+    {
+        if (gameStatus == GAMESTATUS.WIN)
+                playerWin();        
+        else if (gameStatus == GAMESTATUS.LOSE)        
+            UIController.showLose();
+        
+        endGameOptions();
+    }
+    private void playerWin()
+    {
+        score = finalScore();
+
+        UIController.showWin(score);
+
+        PlayerRepository.Instance.SaveLevel(new Level(levelCode, score));
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            int nextScene = (int)levelCode + 2;
+            SceneManager.LoadScene(nextScene);
+        }
+    }
+
+    private int  finalScore()
+    {
+        if (finalScoreSet)
+        {            
+            finalScoreSet = false;
+            return score + (int)targetTime;
+        }
+        return 0;
+    }
+    /*
+     Method: endGameOptions
+     If game status is not playing, then allow player to reload or go to main menu.
+         */
+    private void endGameOptions()
+    {
+        movementInputEnabled = false;
+
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(0);
+        }
+        if (Input.GetKey(KeyCode.U))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+    }
+   
+}
+
+public enum GAMESTATUS
+{
+    PLAYING = 0,
+    WIN = 1,
+    LOSE = 2
 }

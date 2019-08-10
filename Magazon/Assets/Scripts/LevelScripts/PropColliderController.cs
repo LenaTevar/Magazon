@@ -6,7 +6,6 @@ public class PropColliderController : MonoBehaviour
 {
     public Rigidbody prop;
     public AudioSource source;
-    public string name;
     public float speedlimit = 0.001f;
     private float speed;
     private bool flagged = false;
@@ -21,7 +20,6 @@ public class PropColliderController : MonoBehaviour
         {
             flagged = true;
             source.Play();
-            print(name);
         } else if (speed < speedlimit)
         {
             source.Stop();

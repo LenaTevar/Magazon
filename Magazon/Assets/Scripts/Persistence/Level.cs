@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Level 
-{
-   
+{   
     public LevelCode levelName;
     public int score;
 
@@ -12,8 +11,7 @@ public class Level
     {
         levelName = inname;
         score = inScore;
-    }
-  
+    }  
 }
 public enum LevelCode
 {

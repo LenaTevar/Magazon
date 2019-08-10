@@ -27,11 +27,11 @@ public class VanMovementController : MonoBehaviour
 
         GetComponent<Rigidbody>().centerOfMass = centerOfMass;
     }
-    public void FixedUpdate()
+    void FixedUpdate()
     {
         checkIfStatonaryAndMove();
     }
-    public void checkIfStatonaryAndMove()
+    private void checkIfStatonaryAndMove()
     {
         if (levelController.isKeyboardEnabled())
         {
@@ -44,25 +44,25 @@ public class VanMovementController : MonoBehaviour
 
         moveVan();
     }
-    public void moveVan()
+    private void moveVan()
     {
         float motor = maxMotorTorque * Input.GetAxis("Vertical");
         float steering = maxSteeringAngle * Input.GetAxis("Horizontal");
         speed = GetComponent<Rigidbody>().velocity.magnitude;
 
-        BrakesCheck();
+        brakesCheck();
 
         foreach (AxleInfo axleInfo in axleInfos)
         {
-            ApplyMotorSteeringOrBrake(axleInfo, steering, motor);
-            ApplyMovementToVisualWheels(axleInfo);
+            applyMotorSteeringOrBrake(axleInfo, steering, motor);
+            applyMovementToVisualWheels(axleInfo);
         }
     }
 
 
-    private void BrakesCheck()
+    private void brakesCheck()
     {
-        if (vanIsStationary || Input.GetKey(KeyCode.Space))
+        if (vanIsStationary || Input.GetKey(KeyCode.I))
         {
             maxMotorBrake = 300;
         }
@@ -73,7 +73,7 @@ public class VanMovementController : MonoBehaviour
     }
 
     
-    private void ApplyMotorSteeringOrBrake(AxleInfo axleInfo, float steering, float motor)
+    private void applyMotorSteeringOrBrake(AxleInfo axleInfo, float steering, float motor)
     {
         if (axleInfo.steering)
         {
@@ -94,7 +94,7 @@ public class VanMovementController : MonoBehaviour
 
 
     }
-    private void ApplyMovementToVisualWheels(AxleInfo axleInfo)
+    private void applyMovementToVisualWheels(AxleInfo axleInfo)
     {       
         moveOneVisualWheel(axleInfo.leftWheel, axleInfo.leftVisual);
         moveOneVisualWheel(axleInfo.rightWheel, axleInfo.rightVisual);

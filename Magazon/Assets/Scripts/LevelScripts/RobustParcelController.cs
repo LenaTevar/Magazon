@@ -28,7 +28,6 @@ public class RobustParcelController : ParcelController
         base.levelController = FindObjectOfType<LevelController>();
         objectiveCoord = FindObjectOfType<VanRadar>().objective;
 
-        base.levelController.toggleKeyboard();
         deliveringAnimations();
         StartCoroutine(destroyLostParcel());
     }
@@ -41,11 +40,9 @@ public class RobustParcelController : ParcelController
     
     void Update()
     {
-        print("Robust parcel speed: " + base.speed);
         if(objectiveCoord != null)
         {
             moveTowardsObjective();    
-            print("Robust Parcel: Objective found");
         }
        
     }

@@ -108,9 +108,8 @@
      <Compile Include="Assets\Cinemachine\Timeline\CinemachineTrack.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\CarCollider.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\CarMovementController.cs" />
-     <Compile Include="Assets\Scripts\LevelScripts\GUIController.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\LevelController.cs" />
-     <Compile Include="Assets\Scripts\LevelScripts\ObjectiveController.cs" />
+     <Compile Include="Assets\Scripts\LevelScripts\ObjectiveComponent.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\Parcel.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\ParcelController.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\PathController.cs" />
@@ -121,6 +120,7 @@
      <Compile Include="Assets\Scripts\LevelScripts\Sound.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\SoundController.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\SoundVanController.cs" />
+     <Compile Include="Assets\Scripts\LevelScripts\UIController.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\VanMovementController.cs" />
      <Compile Include="Assets\Scripts\LevelScripts\VanRadar.cs" />
      <Compile Include="Assets\Scripts\MainShell\MainShellButtons.cs" />

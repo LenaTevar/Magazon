@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 950, y: 542}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -114,7 +114,7 @@ MonoBehaviour:
   m_MinSize: {x: 579, y: 492}
   m_MaxSize: {x: 14002, y: 14042}
   vertical: 0
-  controlID: 97
+  controlID: 107
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_MinSize: {x: 303, y: 492}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
-  controlID: 103
+  controlID: 108
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -164,7 +164,7 @@ MonoBehaviour:
   m_MinSize: {x: 303, y: 221}
   m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
-  controlID: 104
+  controlID: 109
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -210,8 +210,8 @@ MonoBehaviour:
     y: 0
     width: 1204
     height: 673
-  m_MinSize: {x: 102, y: 121}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 12}
   m_Panes:
   - {fileID: 14}
@@ -383,9 +383,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 123a0000
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 80fbffff
+      m_ExpandedIDs: 8c84fdffb484fdff3e88fdff6897fdff1eb3fdffd2bffdff5ccefdff40e1fdff4ae1fdff1ae4fdff34e8fdff62e8fdff82f6fdff3620feff3c21feff6421feff2a24feff5433feff5e33feff1240feff9c4efeff8061feff6071feff2874feffa49dfeff9cbffeff00dafeffae00ffff9c1affffe040ffff004efffffe4effff1e4fffff2c4fffff085bffffe85dffff085effff165effff0668ffff6668ffff8e68ffff186cffff427bffff6096ffffa4a2ffffc6b0ffff3ac3fffffcd2ffff00d3ffff80fbffff78b100006cb20000cab30000bab60000bac10000f0c20000f6c3000056c40000aec800009ed40000aad500003ed7000096d80000eeee0000d2ef00002cf1000014f4000038fd00002cfe00008aff000092020100b80b0100600c01001a0d0100820e0100d41601000e1801007419010072a8010072a90100a4a90100b4a90100fef00100eaf5010026f601005cf60100
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -445,9 +445,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 4.8869205, y: 1.5638733, z: 238.44101}
+    m_Target: {x: -15.577413, y: 25.185081, z: 109.56274}
     speed: 2
-    m_Value: {x: 4.8869205, y: 1.5638733, z: 238.44101}
+    m_Value: {x: 0, y: 0.0037700534, z: 0}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -477,13 +477,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: 0.59777385, y: -0.057349473, z: 0.040373843, w: 0.79929334}
+    m_Target: {x: -0.043939948, y: -0.9275534, z: 0.35115117, w: -0.12467593}
     speed: 2
-    m_Value: {x: -0.5977738, y: 0.05734947, z: -0.04037384, w: -0.79929334}
+    m_Value: {x: -0.44853124, y: -0.07305768, z: 0.03681949, w: -0.890015}
   m_Size:
-    m_Target: 131.20447
+    m_Target: 51.665756
     speed: 2
-    m_Value: 131.20447
+    m_Value: 1.721943
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -574,19 +574,19 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Imports/Sounds
+    - Assets/Imports/CrowArt - PBR Cardboard Box/Prefabs
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Imports/Sounds
+  - Assets/Imports/CrowArt - PBR Cardboard Box/Prefabs
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\hteva\MyFiles\LNU\Unity\Project\Magazon\Magazon
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 566}
-    m_SelectedIDs: 123a0000
-    m_LastClickedID: 14866
+    scrollPos: {x: 0, y: 79}
+    m_SelectedIDs: b8390000
+    m_LastClickedID: 14776
     m_ExpandedIDs: 0000000030390000323900003439000036390000383900003a3900003c3900003e39000040390000423900004439000046390000483900004a3900004c3900004e390000503900005239000054390000563900005839000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0

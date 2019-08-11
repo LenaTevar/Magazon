@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d4172135bc8673499f61112c9453ed2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.7
+  speed: 1
   Success: {fileID: 1202522996400206, guid: f87e7926fd589094b8a269e14b8bea5e, type: 3}
   successSound: good
   Failure: {fileID: 1876081050882714, guid: e5df5caad603c8349ba3481b8ded0927, type: 3}

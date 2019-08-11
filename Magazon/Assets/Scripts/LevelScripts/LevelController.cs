@@ -133,11 +133,12 @@ public class LevelController : MonoBehaviour
     private int  finalScore()
     {
         if (finalScoreSet)
-        {            
+        {
+            print("Level controller final score set true");
             finalScoreSet = false;
-            return score + (int)targetTime;
+            return score += (int)targetTime;
         }
-        return 0;
+        return score;
     }
     /*
      Method: endGameOptions

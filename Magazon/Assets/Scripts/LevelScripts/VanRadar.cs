@@ -15,9 +15,11 @@ public class VanRadar : MonoBehaviour
         if (other.tag.Contains("Objective"))
         {         
             objective = other.gameObject.transform;            
-        } else
+        }
+
+        /*else
         {          
             objective = null;
-        }
+        }*/
     }
 }
